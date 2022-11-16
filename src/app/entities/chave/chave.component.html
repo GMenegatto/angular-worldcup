@@ -1,0 +1,39 @@
+<form [formGroup]="editForm" class="chave">
+  <h3>Grupo {{ chave }}</h3>
+
+  <div class="inputs">
+    <select class="custom-select mb-3" formControlName="time1">
+      <option value=""></option>
+      <option *ngFor="let timeValue of timesValues" [ngValue]="timeValue">
+        {{ timeValue.time }}
+      </option>
+    </select>
+  </div>
+
+  <div class="inputs">
+    <select class="custom-select mb-3" formControlName="time2">
+      <option value=""></option>
+      <option *ngFor="let timeValue of timesValues" [ngValue]="timeValue">
+        {{ timeValue.time }}
+      </option>
+    </select>
+  </div>
+
+  <div class="inputs">
+    <select class="custom-select mb-3" formControlName="time3">
+      <option value=""></option>
+      <option *ngFor="let timeValue of timesValues" [ngValue]="timeValue">
+        {{ timeValue.time }}
+      </option>
+    </select>
+  </div>
+
+  <div class="inputs">
+    <select class="custom-select mb-3" formControlName="time4">
+      <option value=""></option>
+      <option *ngFor="let timeValue of timesValues" [ngValue]="timeValue">
+        {{ timeValue.time }}
+      </option>
+    </select>
+  </div>
+</form>
