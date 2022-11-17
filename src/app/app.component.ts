@@ -1,11 +1,21 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+// import { WebsocketService } from 'src/service/websocket.service';
 import { ITime, Time } from './model/time.model';
+
+// src\app\services\websocket.service.ts
+import { Injectable } from "@angular/core";
+import { Observer } from 'rxjs';
+import { AnonymousSubject } from 'rxjs/internal/Subject';
+import { map } from 'rxjs/operators';
+
+import { webSocket } from 'rxjs/webSocket';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  // providers: [WebsocketService]
 })
 export class AppComponent implements OnInit, OnDestroy {
   times?: ITime[] = [];
@@ -224,6 +234,28 @@ export class AppComponent implements OnInit, OnDestroy {
     this.times?.push(...times);
 
     console.log('Adicionados os times:' + times);
+  }
+
+  title = 'socketrv';
+  content = '';
+  received: any = [];
+  sent: any[] = [];
+
+  // constructor(private websocketService: WebsocketService) {
+  //   websocketService.messages.subscribe(msg => {
+  //     this.received.push(msg);
+  //     console.log("Response from websocket: " + msg);
+  //   });
+  // }
+
+  subject = webSocket('ws://localhost:6000');
+
+  sendMsg() {
+    this.subject.subscribe();
+    this.subject.next(this.timesValue);
+    this.subject.complete();
+
+
   }
 
   ngOnDestroy(): void {}
